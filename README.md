@@ -1,2 +1,3 @@
-akt-project
+AKT project "What2Do"
 ===========
+

@@ -17,3 +17,8 @@ AKT project "What2Do"
 * [Uku Pattak](https://www.linkedin.com/pub/uku-pattak/68/932/241)
 * Hannes Metssalu
 * Joanna Niklus
+
+#### Plan
+Our language consists of lexer and parser which will be both written in Java using ANTLR.
+
+[Example code](https://github.com/ukupat/akt-project/wiki/Example-Code)

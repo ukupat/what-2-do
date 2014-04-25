@@ -19,6 +19,6 @@ AKT project "What2Do"
 * Joanna Niklus
 
 #### Plan
-Our language consists of lexer and parser which will be both written in Java using ANTLR.
+Our language consists of lexer and parser which will be both written in Java using ANTLR. Syntax errors will be displayed to a pop-up box.
 
 [Example code](https://github.com/ukupat/akt-project/wiki/Example-Code)

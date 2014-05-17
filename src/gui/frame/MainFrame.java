@@ -5,6 +5,7 @@ import gui.panel.OutputPanel;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 public class MainFrame extends JFrame {
 
@@ -28,7 +29,14 @@ public class MainFrame extends JFrame {
 	}
 
 	private void renderPanels() {
-		add(new InputPanel());
-		add(new OutputPanel());
+		JScrollPane inputSP = new JScrollPane(new InputPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		inputSP.setBorder(new EmptyBorder(0, 0, 0, 0));
+
+		add(inputSP);
+
+		JScrollPane outputPS = new JScrollPane(new OutputPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		outputPS.setBorder(new EmptyBorder(0, 0, 0, 0));
+
+		add(outputPS);
 	}
 }

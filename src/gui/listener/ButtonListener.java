@@ -1,9 +1,9 @@
 package gui.listener;
 
+import gui.input.Button;
 import gui.panel.InputPanel;
 import gui.util.FileBrowser;
 
-import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -11,10 +11,12 @@ public class ButtonListener implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		JButton button = (JButton) e.getSource();
+		Button button = (Button) e.getSource();
 
 		if (button == InputPanel.chooseFileButton) {
 			new FileBrowser(); // TODO
+		} else if (button == InputPanel.submitButton) {
+			// TODO
 		}
 	}
 

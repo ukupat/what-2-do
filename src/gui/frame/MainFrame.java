@@ -12,6 +12,9 @@ public class MainFrame extends JFrame {
 	public static final Integer WINDOW_WIDTH = 600;
 	public static final Integer WINDOW_HEIGHT = 550;
 
+	public static InputPanel inputPanel = new InputPanel();
+	public static OutputPanel outputPanel = new OutputPanel();
+
 	public void render() {
 		setFrameSettings();
 		renderPanels();
@@ -29,12 +32,12 @@ public class MainFrame extends JFrame {
 	}
 
 	private void renderPanels() {
-		JScrollPane inputSP = new JScrollPane(new InputPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		JScrollPane inputSP = new JScrollPane(inputPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		inputSP.setBorder(new EmptyBorder(0, 0, 0, 0));
 
 		add(inputSP);
 
-		JScrollPane outputPS = new JScrollPane(new OutputPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		JScrollPane outputPS = new JScrollPane(outputPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		outputPS.setBorder(new EmptyBorder(0, 0, 0, 0));
 
 		add(outputPS);

@@ -11,16 +11,16 @@ import w2d.question.Select;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class InputPanel extends JPanel {
 
 	public static Button chooseFileButton;
 	public static Button submitButton;
 
-	// TODO place where we hold questions
-	private List<Question> questions = new ArrayList<Question>();
+	public static Map<Question, JComponent> questions = new HashMap<Question, JComponent>();
 
 	public InputPanel() {
 		setPanelSettings();
@@ -54,11 +54,19 @@ public class InputPanel extends JPanel {
 		add(chooseFileButton, "pos 32% 45%");
 	}
 
-	private void renderQuestions() {
+	// TODO use it in W2D side
+	public void showQuestions(List<Question> questions) {
+		removeAll();
+
 		renderQuestionsTitle();
 
-		// TODO
-
+		for (Question question : questions) {
+			if (question instanceof Select) {
+				renderSelect((Select) question);
+			} else {
+				renderCheckbox(question);
+			}
+		}
 		renderSubmitButton();
 	}
 
@@ -76,6 +84,8 @@ public class InputPanel extends JPanel {
 
 		SelectInput selectInput = new SelectInput(select.options);
 		add(selectInput, "gap 15 0 3, wrap");
+
+		questions.put(select, selectInput);
 	}
 
 	private void renderCheckbox(Question checkbox) {
@@ -84,6 +94,8 @@ public class InputPanel extends JPanel {
 
 		CheckboxInput checkboxInput = new CheckboxInput();
 		add(checkboxInput, "gap 15 0 3, wrap");
+
+		questions.put(checkbox, checkboxInput);
 	}
 
 	private void renderSubmitButton() {

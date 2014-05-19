@@ -30,7 +30,7 @@ public class FileBrowser extends JFrame {
 		}
 	}
 
-	public File getSelectedDirectory() {
-		return new File(selectedDir.getAbsolutePath());
+	public String getSelectedDirectory() {
+		return selectedDir.getAbsolutePath();
 	}
 }

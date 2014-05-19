@@ -6,6 +6,7 @@ import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import java.awt.*;
 
 public class MainFrame extends JFrame {
 
@@ -33,9 +34,13 @@ public class MainFrame extends JFrame {
 
 	private void renderPanels() {
 		JScrollPane outputPS = new JScrollPane(outputPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+		outputPS.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
 		outputPS.setBorder(new EmptyBorder(0, 0, 0, 0));
 
 		JScrollPane inputSP = new JScrollPane(inputPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+		inputSP.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
 		inputSP.setBorder(new EmptyBorder(0, 0, 0, 0));
 
 		add(outputPS);

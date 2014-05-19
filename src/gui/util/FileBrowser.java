@@ -31,6 +31,6 @@ public class FileBrowser extends JFrame {
 	}
 
 	public String getSelectedDirectory() {
-		return selectedDir.getAbsolutePath();
+		return selectedDir != null ? selectedDir.getAbsolutePath() : null;
 	}
 }

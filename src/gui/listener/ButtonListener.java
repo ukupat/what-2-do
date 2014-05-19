@@ -18,12 +18,12 @@ public class ButtonListener implements MouseListener {
 		Button button = (Button) e.getSource();
 
 		if (button == InputPanel.chooseFileButton) {
-			log.info("User clicked on choose file button");
+			String directory = new FileBrowser().getSelectedDirectory();
 
-			String script = ReadFile.getText(new FileBrowser().getSelectedDirectory()); // TODO
+			if (directory != null) {
+				String script = ReadFile.getText(directory); // TODO
+			}
 		} else if (button == InputPanel.submitButton) {
-			log.info("User clicked on submit button");
-
 			// TODO
 		}
 	}

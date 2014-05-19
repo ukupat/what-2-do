@@ -19,7 +19,7 @@ import ../fields/ExtraFields.w2d
 
 // Select returns strings
 #howMuchTime = new Select {
-	label: "How much time to you have?", // Label is required, Exception is thrown on that
+	label: "How much time do you have?", // Label is required, Exception is thrown on that
 	options: { // Options are required, Exception is thrown on that
 		30min: "30 minutes",
 		60min: "60 minutes",

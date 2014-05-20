@@ -5,7 +5,7 @@ script
   ;
 
 sentences
-  : sentence ('\n' sentence)*
+  : sentence (';' sentence)* ';'
   ;
 
 sentence
@@ -25,11 +25,11 @@ questionVariable
   ;
 
 select
-  : 'new Select {' fields '}' # SelectQuestion
+  : 'new Select' '{' fields '}' # SelectQuestion
   ;
 
 checkbox
-  : 'new Checkbox {' label '}'  # CheckboxQuestion
+  : 'new Checkbox' '{' label '}'  # CheckboxQuestion
   ;
 
 fields
@@ -46,15 +46,15 @@ customField
   ;
 
 fieldValue
-  : String  #ObjectFieldValue
+  : String  # ObjectFieldValue
   ;
 
 Assignment
-  : ' = '
+  : '='
   ;
 
 KeyAndValueSeparator
-  : ': '
+  : ':'
   ;
 
 Variable
@@ -63,6 +63,13 @@ Variable
 
 String
   :   '"' ~["\n\r]* '"'
+  ;
+
+/**
+ * Different whitespaces for skipping
+*/
+Whitespaces
+  : [ \t\r\n]+ -> skip
   ;
 
 /**

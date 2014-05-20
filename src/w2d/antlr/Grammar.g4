@@ -1,40 +1,77 @@
 grammar Grammar;
 
+script
+  : sentences
+  ;
+
+sentences
+  : sentence ('\n' sentence)*
+  ;
+
+sentence
+  : question
+  ;
+
+/**
+ * Questions
+ */
 question
-	: Question '= new Select {' select '}'	
-    | Question '= new Checkbox {' checkbox '}'
-    ;
+  : questionVariable Assignment select  # QuestionSentence
+  | questionVariable Assignment checkbox  # QuestionSentence
+  ;
+
+questionVariable
+  : '#' Variable  # QuestionVariableName
+  ;
 
 select
-	: 'label: ' Text
-	| 'options: {' option '},'
-	| 'default: ' Key
-	;
-	
-option
-	:
-	;
-	  
-Key
-	:	[aA-zZ0-9]+
-	;
+  : 'new Select {' fields '}' # SelectQuestion
+  ;
 
-Text
-	:	.*?
-	;
-	
-Import
-	:	'import ' .*? '.w2d'
-	;
-	
-Question
-	: '#' .*? ' '
-	;
- 
+checkbox
+  : 'new Checkbox {' label '}'  # CheckboxQuestion
+  ;
+
+fields
+  : label
+  | customField
+  ;
+
+label
+  : 'label' KeyAndValueSeparator fieldValue  # LabelField
+  ;
+
+customField
+  : Variable KeyAndValueSeparator String
+  ;
+
+fieldValue
+  : String  #ObjectFieldValue
+  ;
+
+Assignment
+  : ' = '
+  ;
+
+KeyAndValueSeparator
+  : ': '
+  ;
+
+Variable
+  : [a-zA-Z][a-zA-Z0-9_]*
+  ;
+
+String
+  :   '"' ~["\n\r]* '"'
+  ;
+
+/**
+ * Comments and doc
+ */
 Documentation
-    :   '/*' .*? '*/' -> skip
-    ;
+  : '/*' .*? '*/' -> skip
+  ;
 
 Comment
-	:	'//' .*? '/n' -> skip
-	;
+  : '//' .*? '/n' -> skip
+  ;

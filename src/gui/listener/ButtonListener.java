@@ -4,14 +4,11 @@ import gui.input.Button;
 import gui.panel.InputPanel;
 import gui.util.FileBrowser;
 import gui.util.ReadFile;
-import org.apache.log4j.Logger;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class ButtonListener implements MouseListener {
-
-	private final Logger log = Logger.getLogger(FileBrowser.class);
 
 	@Override
 	public void mouseClicked(MouseEvent e) {

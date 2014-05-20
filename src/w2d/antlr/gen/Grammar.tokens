@@ -1,0 +1,20 @@
+Documentation=11
+Variable=9
+String=10
+Comment=12
+Assignment=7
+T__1=5
+T__0=6
+T__3=3
+T__5=1
+KeyAndValueSeparator=8
+T__2=4
+T__4=2
+': '=8
+' = '=7
+'new Checkbox {'=6
+'}'=5
+'#'=4
+'\n'=3
+'label'=2
+'new Select {'=1

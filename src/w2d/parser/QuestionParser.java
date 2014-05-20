@@ -16,13 +16,24 @@ public class QuestionParser {
 	public static Map<String, Question> questions = new HashMap<String, Question>();
 
 	public static void parseQuestion(ParseTree tree) {
-		String variableName = tree.getChild(0).getText();
-		String label = "";
-		ParseTree checkboxTree = tree.getChild(2);
+		String variableName = parseVariableName(tree);
+		ParseTree question = tree.getChild(2);
 
-		for (int i = 0; i < checkboxTree.getChildCount(); i ++) {
-			if (checkboxTree.getChild(i) instanceof GrammarParser.LabelFieldContext) {
-				label = parseLabel(checkboxTree.getChild(i));
+		if (question instanceof GrammarParser.CheckboxQuestionContext) {
+			parseCheckbox(question, variableName);
+		}
+	}
+
+	private static String parseVariableName(ParseTree tree) {
+		return tree.getChild(0).getText();
+	}
+
+	private static void parseCheckbox(ParseTree tree, String variableName) {
+		String label = "";
+
+		for (int i = 0; i < tree.getChildCount(); i ++) {
+			if (tree.getChild(i) instanceof GrammarParser.LabelFieldContext) {
+				label = parseLabel(tree.getChild(i));
 			}
 		}
 		questions.put(variableName, new Checkbox(label));
@@ -38,6 +49,6 @@ public class QuestionParser {
 				return tree.getChild(i).getText();
 			}
 		}
-		return "";
+		return ""; // TODO what happens when label not found
 	}
 }

@@ -31,13 +31,13 @@ public class W2D {
 
 		ParseTree tree = parser.question();
 
-		log.debug(tree.toStringTree());
-
 		return tree;
 	}
 
 	private void parseTreeToObjects(ParseTree tree) {
 		if (tree instanceof GrammarParser.QuestionSentenceContext) {
+			log.info("Found question sentence: " + tree.getText());
+
 			QuestionParser.parseQuestion(tree);
 		} else {
 			parseTreeToObjects(tree.getChild(0));

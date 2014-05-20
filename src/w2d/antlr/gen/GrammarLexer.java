@@ -1,12 +1,13 @@
-package w2d.antlr.gen;// Generated from /Users/ukupat/Development/University/AKT/Project/src/w2d/antlr/Grammar.g4 by ANTLR 4.x
-
-import org.antlr.v4.runtime.CharStream;
+// Generated from /Users/ukupat/Development/University/AKT/Project/src/w2d/antlr/Grammar.g4 by ANTLR 4.x
+package w2d.antlr.gen;
 import org.antlr.v4.runtime.Lexer;
-import org.antlr.v4.runtime.atn.ATN;
-import org.antlr.v4.runtime.atn.ATNDeserializer;
-import org.antlr.v4.runtime.atn.LexerATNSimulator;
-import org.antlr.v4.runtime.atn.PredictionContextCache;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.TokenStream;
+import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
+import org.antlr.v4.runtime.misc.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class GrammarLexer extends Lexer {
@@ -14,19 +15,18 @@ public class GrammarLexer extends Lexer {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__5=1, T__4=2, T__3=3, T__2=4, T__1=5, T__0=6, Assignment=7, KeyAndValueSeparator=8,
+		T__5=1, T__4=2, T__3=3, T__2=4, T__1=5, T__0=6, Assignment=7, KeyAndValueSeparator=8, 
 		Variable=9, String=10, Documentation=11, Comment=12;
 	public static String[] modeNames = {
 		"DEFAULT_MODE"
 	};
 
 	public static final String[] tokenNames = {
-		"<INVALID>",
-		"'new Select {'", "'label'", "'\n'", "'#'", "'}'", "'new Checkbox {'",
-		"' = '", "': '", "Variable", "String", "Documentation", "Comment"
+		"'\\u0000'", "'\\u0001'", "'\\u0002'", "'\\u0003'", "'\\u0004'", "'\\u0005'", 
+		"'\\u0006'", "'\\u0007'", "'\b'", "'\t'", "'\n'", "'\\u000B'", "'\f'"
 	};
 	public static final String[] ruleNames = {
-		"T__5", "T__4", "T__3", "T__2", "T__1", "T__0", "Assignment", "KeyAndValueSeparator",
+		"T__5", "T__4", "T__3", "T__2", "T__1", "T__0", "Assignment", "KeyAndValueSeparator", 
 		"Variable", "String", "Documentation", "Comment"
 	};
 

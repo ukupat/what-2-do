@@ -1,4 +1,5 @@
-package w2d.antlr.gen;// Generated from /Users/ukupat/Development/University/AKT/Project/src/w2d/antlr/Grammar.g4 by ANTLR 4.x
+// Generated from /Users/ukupat/Development/University/AKT/Project/src/w2d/antlr/Grammar.g4 by ANTLR 4.x
+package w2d.antlr.gen;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.misc.NotNull;
@@ -6,7 +7,7 @@ import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 /**
- * This class provides an empty implementation of {@link w2d.antlr.gen.GrammarListener},
+ * This class provides an empty implementation of {@link GrammarListener},
  * which can be extended to create a listener which only needs to handle a subset
  * of the available methods.
  */
@@ -23,7 +24,6 @@ public class GrammarBaseListener implements GrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCheckboxQuestion(@NotNull GrammarParser.CheckboxQuestionContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -36,7 +36,6 @@ public class GrammarBaseListener implements GrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCustomField(@NotNull GrammarParser.CustomFieldContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -49,7 +48,6 @@ public class GrammarBaseListener implements GrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitQuestionSentence(@NotNull GrammarParser.QuestionSentenceContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -62,7 +60,6 @@ public class GrammarBaseListener implements GrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSelectQuestion(@NotNull GrammarParser.SelectQuestionContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -75,7 +72,6 @@ public class GrammarBaseListener implements GrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSentence(@NotNull GrammarParser.SentenceContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -88,7 +84,6 @@ public class GrammarBaseListener implements GrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSentences(@NotNull GrammarParser.SentencesContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -101,7 +96,6 @@ public class GrammarBaseListener implements GrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitQuestionVariableName(@NotNull GrammarParser.QuestionVariableNameContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -114,7 +108,6 @@ public class GrammarBaseListener implements GrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitScript(@NotNull GrammarParser.ScriptContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -127,7 +120,6 @@ public class GrammarBaseListener implements GrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitObjectFieldValue(@NotNull GrammarParser.ObjectFieldValueContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -140,7 +132,6 @@ public class GrammarBaseListener implements GrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitLabelField(@NotNull GrammarParser.LabelFieldContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *

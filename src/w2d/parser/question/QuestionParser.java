@@ -1,9 +1,8 @@
-package w2d.parser;
+package w2d.parser.question;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.apache.log4j.Logger;
 import w2d.antlr.gen.GrammarParser;
-import w2d.question.Checkbox;
 import w2d.question.Question;
 
 import java.util.HashMap;
@@ -20,7 +19,8 @@ public class QuestionParser {
 		ParseTree question = tree.getChild(2);
 
 		if (question instanceof GrammarParser.CheckboxQuestionContext) {
-			parseCheckbox(question, variableName);
+			CheckboxParser.parse(question, variableName);
+		} else if (question instanceof GrammarParser.SelectQuestionContext) {
 		}
 	}
 
@@ -28,20 +28,7 @@ public class QuestionParser {
 		return tree.getChild(0).getText();
 	}
 
-	private static void parseCheckbox(ParseTree tree, String variableName) {
-		String label = "";
-
-		for (int i = 0; i < tree.getChildCount(); i ++) {
-			if (tree.getChild(i) instanceof GrammarParser.LabelFieldContext) {
-				label = parseLabel(tree.getChild(i));
-			}
-		}
-		questions.put(variableName, new Checkbox(label));
-
-		log.info("Added new question to map: " + variableName + " => " + questions.get(variableName).label);
-	}
-
-	private static String parseLabel(ParseTree tree) {
+	protected static String parseLabel(ParseTree tree) {
 		for (int i = 0; i < tree.getChildCount(); i ++) {
 			if (tree.getChild(i) instanceof GrammarParser.ObjectFieldValueContext) {
 				log.info("Found question label: " + tree.getChild(i).getText());

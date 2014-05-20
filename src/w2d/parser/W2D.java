@@ -6,6 +6,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.apache.log4j.Logger;
 import w2d.antlr.gen.GrammarLexer;
 import w2d.antlr.gen.GrammarParser;
+import w2d.parser.question.QuestionParser;
 
 public class W2D {
 

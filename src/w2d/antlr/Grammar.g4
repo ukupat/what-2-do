@@ -10,6 +10,8 @@ sentences
 
 sentence
   : question
+  | ruleObject // Couldn't use rule name
+  | activity
   ;
 
 /**
@@ -25,30 +27,95 @@ questionVariable
   ;
 
 select
-  : 'new Select' '{' fields '}' # SelectQuestion
+  : 'new Select' ObjectStart fields ObjectEnd # SelectQuestion
   ;
 
 checkbox
-  : 'new Checkbox' '{' label '}'  # CheckboxQuestion
+  : 'new Checkbox' ObjectStart label ObjectEnd  # CheckboxQuestion
   ;
 
 fields
   : label
-  | customField
   ;
 
 label
   : 'label' KeyAndValueSeparator fieldValue  # LabelField
   ;
 
-customField
-  : Variable KeyAndValueSeparator String
-  ;
-
 fieldValue
   : String  # ObjectFieldValue
   ;
 
+/**
+ * Rules
+ */
+ruleObject
+  : ruleVariable Assignment 'new Rule' ObjectStart statements ObjectEnd  # RuleSentence
+  ;
+
+ruleVariable
+  : '$' Variable  # RuleVariableName
+  ;
+
+statements
+  : statement (',' statement)*
+  ;
+
+statement
+  : booleanType KeyAndValueSeparator expression // TODO can have AND, OR
+  ;
+
+expression
+  : questionVariable expressionType booleanType
+  | questionVariable expressionType String
+  ;
+
+booleanType // TODO should be BooleanType
+  : 'true'
+  | 'false'
+  ;
+
+expressionType // TODO should be ExpressionType
+  : 'is'
+  | 'is not'
+  ;
+
+/**
+ * Activities
+ */
+activity
+  : activityVariable Assignment 'new Activity' ObjectStart activityFields ObjectEnd # ActivitySentence
+  ;
+
+activityVariable
+  : '@' Variable  # ActivityVariableName
+  ;
+
+activityFields
+  : (customField ',')* (rulesField ',')? (customField ',')* titleField (',' customField)*
+  | (customField ',')* titleField (',' customField)* (',' rulesField)? (',' customField)*
+  ;
+
+customField
+  : Variable KeyAndValueSeparator String
+  ;
+
+titleField
+  : 'title' KeyAndValueSeparator String
+  ;
+
+rulesField
+  : 'rules' KeyAndValueSeparator ObjectStart ruleField (',' ruleField)* ObjectEnd
+  ;
+
+ruleField
+  : ruleVariable KeyAndValueSeparator booleanType
+  |
+  ;
+
+/**
+ * Stuff
+ */
 Assignment
   : '='
   ;
@@ -62,7 +129,15 @@ Variable
   ;
 
 String
-  :   '"' ~["\n\r]* '"'
+  : '"' ~["\n\r]* '"'
+  ;
+
+ObjectStart
+  : '{'
+  ;
+
+ObjectEnd
+  : '}'
   ;
 
 /**

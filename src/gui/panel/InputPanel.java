@@ -6,6 +6,7 @@ import gui.input.CheckboxInput;
 import gui.input.Label;
 import gui.input.SelectInput;
 import net.miginfocom.swing.MigLayout;
+import org.apache.log4j.Logger;
 import w2d.question.Question;
 import w2d.question.Select;
 
@@ -16,6 +17,8 @@ import java.util.List;
 import java.util.Map;
 
 public class InputPanel extends JPanel {
+
+	private static final Logger log = Logger.getLogger(InputPanel.class);
 
 	public static Button chooseFileButton;
 	public static Button submitButton;
@@ -54,8 +57,9 @@ public class InputPanel extends JPanel {
 		add(chooseFileButton, "pos 32% 45%");
 	}
 
-	// TODO use it in W2D side
 	public void showQuestions(List<Question> questions) {
+		log.info("Showing " + questions.size() + " question(s)");
+
 		removeAll();
 
 		renderQuestionsTitle();
@@ -68,6 +72,11 @@ public class InputPanel extends JPanel {
 			}
 		}
 		renderSubmitButton();
+
+		MainFrame.outputPanel.resetView();
+
+		repaint();
+		revalidate();
 	}
 
 	private void renderQuestionsTitle() {

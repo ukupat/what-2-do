@@ -17,6 +17,12 @@ public class OutputPanel extends JPanel {
 		renderView();
 	}
 
+	public void resetView() {
+		removeAll();
+		renderView();
+		refreshPanel();
+	}
+
 	private void setPanelSettings() {
 		setLayout(
 			new MigLayout(
@@ -33,10 +39,7 @@ public class OutputPanel extends JPanel {
 	}
 
 	private void renderTitle() {
-		JLabel title = new JLabel("Activities to Do");
-		title.setFont(new Font("Helvetica", Font.PLAIN, 20));
-		title.setForeground(Color.WHITE);
-
+		Text title = new Text("Activities to Do", 20, Color.WHITE);
 		add(title, "gap 20 0 20, wrap, span 4");
 	}
 
@@ -48,6 +51,26 @@ public class OutputPanel extends JPanel {
 		add(intro, "gap 20 0 20, wrap");
 	}
 
+	public void showErrors(List<String> errors) {
+		removeAll();
+		renderErrorTitle();
+
+		for (String error : errors) {
+			renderError(error);
+		}
+		refreshPanel();
+	}
+
+	private void renderErrorTitle() {
+		Text title = new Text("Problems in the Script", 20, Color.WHITE);
+		add(title, "gap 20 0 20, wrap, span 4");
+	}
+
+	private void renderError(String error) {
+		Text errorText = new Text(error, 14, Color.RED);
+		add(errorText, "gap 20 0 20, wrap");
+	}
+
 	// TODO use it in W2D side
 	public void showActivities(List<Activity> activities) {
 		removeAll();
@@ -56,6 +79,7 @@ public class OutputPanel extends JPanel {
 		for (int i = 1; i <= activities.size(); i ++) {
 			renderActivity(i, activities.get(i));
 		}
+		refreshPanel();
 	}
 
 	private void renderActivity(Integer count, Activity activity) {
@@ -83,5 +107,10 @@ public class OutputPanel extends JPanel {
 
 		Text field = new Text(value, 14, 130);
 		add(field, "gap 10 0 5 5, wrap, aligny top");
+	}
+
+	private void refreshPanel() {
+		repaint();
+		revalidate();
 	}
 }

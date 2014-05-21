@@ -4,6 +4,7 @@ import gui.input.Button;
 import gui.panel.InputPanel;
 import gui.util.FileBrowser;
 import gui.util.ReadFile;
+import w2d.parser.W2D;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -19,6 +20,7 @@ public class ButtonListener implements MouseListener {
 
 			if (directory != null) {
 				String script = ReadFile.getText(directory); // TODO
+				new W2D(script).readTheScript();
 			}
 		} else if (button == InputPanel.submitButton) {
 			// TODO

@@ -1,8 +1,5 @@
 // W2D code syntax example
 
-// Users can import other files with directory
-import ../fields/ExtraFields.w2d
-
 /*
  * W2D has 3 main points
  */
@@ -21,16 +18,15 @@ import ../fields/ExtraFields.w2d
 #howMuchTime = new Select {
 	label: "How much time do you have?", // Label is required, Exception is thrown on that
 	options: { // Options are required, Exception is thrown on that
-		30min: "30 minutes",
-		60min: "60 minutes",
-		5hr: "5 hours",
-	},
-	default: 30min
-}
+		"30 minutes",
+		"60 minutes",
+		"5 hours"
+	}
+};
 
 // Checkbox returns true or false - boolean types
 #sleepy = new Checkbox {
-	label: "Are you sleepy?", // Label is required, Exception is thrown on that
+	label: "Are you sleepy?" // Label is required, Exception is thrown on that
 }
 
 /*
@@ -47,8 +43,8 @@ import ../fields/ExtraFields.w2d
 $readyForGaming = new Rule {
 	true: #howMuchTime is 30min and #sleepy is true, // Basically it is -> return #howMuchTime == "30 minutes" && #sleepy == true;
 	true: #howMuchTime is 60min and #sleepy is false,
-	false: #howMuchTime is 5hr and #sleepy is true,
-}
+	false: #howMuchTime is 5hr or #sleepy is true
+};
 
 /*
  * Activities
@@ -61,23 +57,16 @@ $readyForGaming = new Rule {
  */
 
 @cs = new Activity {
-	rules: { // If there are no rules then it is always in option2
+	rules: {
 		$readyForGaming: true,
-		$nextRule: false, // It says that this rule must return false
-	}
+	},
 	desc: "Play Counter Strike NOW",
-	howToPlay: "With computer", // Keys must be one word
-}
+	howToPlay: "With computer" // Keys must be one word
+};
 
 @sleep = new Activity {
 	rules: { // If there are no rules then it is always in option
 		$readyForGaming: false,
-	}
+	},
 	desc: "Go to sleep please"
-}
-
-// Return UI, if ui is not returned then nothing happens
-return new UI {
-	@sleep: "It's time to sleep", // Activitiy and its title
-	@cs: "Counter Strike",
-}
+};

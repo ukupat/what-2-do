@@ -62,7 +62,11 @@ statements
   ;
 
 statement
-  : booleanType KeyAndValueSeparator expression // TODO can have AND, OR
+  : booleanType KeyAndValueSeparator expressions
+  ;
+
+expressions
+  : expression ((andOperator|orOperator) expression)*
   ;
 
 expression
@@ -78,6 +82,14 @@ booleanType // TODO should be BooleanType
 expressionType // TODO should be ExpressionType
   : 'is'
   | 'is not'
+  ;
+
+andOperator // TODO should be AndOperator
+  : 'and'
+  ;
+
+orOperator // TODO should be OrOperator
+  : 'or'
   ;
 
 /**

@@ -3,6 +3,7 @@ package gui.panel;
 import gui.frame.MainFrame;
 import gui.output.Text;
 import net.miginfocom.swing.MigLayout;
+import org.apache.log4j.Logger;
 import w2d.activity.Activity;
 
 import javax.swing.*;
@@ -11,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 
 public class OutputPanel extends JPanel {
+
+	private static final Logger log = Logger.getLogger(OutputPanel.class);
 
 	public OutputPanel() {
 		setPanelSettings();
@@ -71,13 +74,14 @@ public class OutputPanel extends JPanel {
 		add(errorText, "gap 20 0 20, wrap");
 	}
 
-	// TODO use it in W2D side
 	public void showActivities(List<Activity> activities) {
+		log.info("Showing " + activities.size() + " activities");
+
 		removeAll();
 		renderTitle();
 
 		for (int i = 1; i <= activities.size(); i ++) {
-			renderActivity(i, activities.get(i));
+			renderActivity(i, activities.get(i - 1));
 		}
 		refreshPanel();
 	}

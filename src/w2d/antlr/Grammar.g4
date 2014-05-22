@@ -18,7 +18,7 @@ sentence
  * Questions
  */
 question
-  : questionVariable Assignment select  # QuestionSentence
+  : questionVariable Assignment select    # QuestionSentence
   | questionVariable Assignment checkbox  # QuestionSentence
   ;
 
@@ -109,20 +109,20 @@ activityFields
   ;
 
 customField
-  : Variable KeyAndValueSeparator String
+  : Variable KeyAndValueSeparator String # ActivityCustomField
   ;
 
 titleField
-  : 'title' KeyAndValueSeparator String
+  : 'title' KeyAndValueSeparator String # ActivityTitleField
   ;
 
 rulesField
-  : 'rules' KeyAndValueSeparator ObjectStart ruleField (',' ruleField)* ObjectEnd
+  : 'rules' KeyAndValueSeparator ObjectStart ruleField (',' ruleField)* ObjectEnd # ActivityRulesField
   ;
 
 ruleField
-  : ruleVariable KeyAndValueSeparator booleanType
-  |
+  : ruleVariable KeyAndValueSeparator booleanType # ActivityRule
+  |                                               # ActivityRule
   ;
 
 /**

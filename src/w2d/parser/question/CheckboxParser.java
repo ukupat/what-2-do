@@ -7,9 +7,9 @@ import w2d.question.Checkbox;
 
 public class CheckboxParser extends QuestionParser {
 
-	private static final Logger log = Logger.getLogger(CheckboxParser.class);
+	private final Logger log = Logger.getLogger(CheckboxParser.class);
 
-	public static void parse(ParseTree tree, String variableName) {
+	public void parse(ParseTree tree, String variableName) {
 		String label = "";
 
 		for (int i = 0; i < tree.getChildCount(); i ++) {

@@ -11,7 +11,7 @@ public class CheckboxTest {
 
 	@Test
 	public void oneLineCheckbox() {
-		new W2D("#c = new Checkbox {label:\"You cool?\"}").readTheScript();
+		new W2D("#c = new Checkbox {label:\"You cool?\"};").readTheScript();
 
 		assertEquals(1, QuestionParser.questions.size());
 		assertNotNull(QuestionParser.questions.get("#c"));

@@ -3,7 +3,7 @@ AKT project "What2Do"
 
 #### Domain-specific language
 
-**What2Do** is a programming language that allows users to create events and write rules to generate activities that he/she can do. Language is run from our "IDE" written in Java. Running .w2d code will be generated into Java code which opens up a GUI.
+**What2Do** is a programming language that allows users to create events and write rules to generate activities that he/she can do. Language is run from our "IDE" written in Java.
 
 #### Goals of our What2Do Language
 * Easy to write and run
@@ -19,6 +19,6 @@ AKT project "What2Do"
 * Joanna Niklus
 
 #### Plan
-Our language consists of lexer and parser which will be both written in Java using ANTLR. Syntax errors will be displayed to a pop-up box.
+Our language consists of lexer and parser which will be both written in Java using ANTLR. Syntax errors will be displayed to our IDE.
 
 [Example code](https://github.com/ukupat/akt-project/wiki/Example-Code)

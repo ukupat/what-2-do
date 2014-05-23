@@ -1,11 +1,11 @@
 package w2d.parser;
 
-import gui.Gui;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.apache.log4j.Logger;
+import w2d.activity.Activity;
 import w2d.antlr.ExceptionErrorStrategy;
 import w2d.antlr.gen.GrammarLexer;
 import w2d.antlr.gen.GrammarParser;
@@ -13,8 +13,11 @@ import w2d.parser.activity.ActivityParser;
 import w2d.parser.question.QuestionParser;
 import w2d.parser.rule.RuleParser;
 import w2d.question.Question;
+import w2d.rule.Rule;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class W2D {
 
@@ -29,13 +32,6 @@ public class W2D {
 	public void readTheScript() {
 		ParseTree tree = createParseTree();
 		parseTreeToObjects(tree);
-
-		if (!ExceptionErrorStrategy.errors.isEmpty()) {
-			Gui.showErrors(ExceptionErrorStrategy.errors);
-			ExceptionErrorStrategy.cleanErrors();
-		} else {
-			Gui.showQuestions(new ArrayList<Question>(QuestionParser.questions.values()));
-		}
 	}
 
 	private ParseTree createParseTree() throws RecognitionException {
@@ -72,5 +68,51 @@ public class W2D {
 				}
 			}
 		}
+	}
+
+	public List<String> getParsingErrors() {
+		List<String> errors = ExceptionErrorStrategy.errors;
+		ExceptionErrorStrategy.cleanErrors();
+
+		return errors;
+	}
+
+	public List<Question> getQuestions() {
+		return new ArrayList<Question>(QuestionParser.questions.values());
+	}
+
+	public List<Activity> getActivitiesToShow() {
+		checkRules();
+		return filterActivities();
+	}
+
+	private void checkRules() {
+		log.info("Checking rules");
+
+		for (Map.Entry<String, Rule> el : RuleParser.rules.entrySet()) {
+			el.getValue().setSatisfied();
+
+			log.info("Rule " + el.getKey() + " is " + el.getValue().satisfied);
+		}
+	}
+
+	private List<Activity> filterActivities() {
+		List<Activity> activities = new ArrayList<Activity>();
+
+		for (Map.Entry<String, Activity> el : ActivityParser.activities.entrySet()) {
+			if (activityRulesAreSatisfied(el.getValue())) {
+				activities.add(el.getValue());
+			}
+		}
+		return activities;
+	}
+
+	private Boolean activityRulesAreSatisfied(Activity activity) {
+		for (Map.Entry<Rule, Boolean> el : activity.rules.entrySet()) {
+			if (el.getKey().satisfied != el.getValue()) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

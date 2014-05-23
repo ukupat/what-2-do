@@ -62,16 +62,16 @@ statements
   ;
 
 statement
-  : booleanType KeyAndValueSeparator expressions
+  : booleanType KeyAndValueSeparator expressions # StatementField
   ;
 
 expressions
-  : expression ((andOperator|orOperator) expression)*
+  : expression (andOperator expression)*
   ;
 
 expression
-  : questionVariable expressionType booleanType
-  | questionVariable expressionType String
+  : questionVariable expressionType booleanType # ExpressionField
+  | questionVariable expressionType String      # ExpressionField
   ;
 
 booleanType // TODO should be BooleanType
@@ -86,10 +86,6 @@ expressionType // TODO should be ExpressionType
 
 andOperator // TODO should be AndOperator
   : 'and'
-  ;
-
-orOperator // TODO should be OrOperator
-  : 'or'
   ;
 
 /**

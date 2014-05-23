@@ -111,4 +111,16 @@ public class InputPanel extends JPanel {
 		submitButton = new Button("Submit");
 		add(submitButton, "gap 13 15 15 15");
 	}
+
+	public void collectAnswers() {
+		log.info("Collecting answers");
+
+		for (Map.Entry<Question, JComponent> el : questions.entrySet()) {
+			if (el.getValue() instanceof JCheckBox) {
+				el.getKey().answer = Boolean.toString(((JCheckBox) el.getValue()).isSelected());
+
+				log.info("Question '" + el.getKey().label + "' answer is '" + el.getKey().answer);
+			}
+		}
+	}
 }

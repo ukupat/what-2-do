@@ -163,5 +163,5 @@ Documentation
   ;
 
 Comment
-  : '//' .*? '/n' -> skip
+  : '//' ~('\r'|'\n')* -> skip
   ;

@@ -27,7 +27,7 @@
 // Checkbox returns true or false - boolean types
 #sleepy = new Checkbox {
 	label: "Are you sleepy?" // Label is required, Exception is thrown on that
-}
+};
 
 /*
  * Rules
@@ -41,9 +41,9 @@
  */
 
 $readyForGaming = new Rule {
-	true: #howMuchTime is 30min and #sleepy is true, // Basically it is -> return #howMuchTime == "30 minutes" && #sleepy == true;
-	true: #howMuchTime is 60min and #sleepy is false,
-	false: #howMuchTime is 5hr or #sleepy is true
+	true: #howMuchTime is "30 minutes" and #sleepy is true, // Basically it is -> return #howMuchTime == "30 minutes" && #sleepy == true;
+	true: #howMuchTime is "60 minutes" and #sleepy is false,
+	false: #howMuchTime is "5 hours"
 };
 
 /*
@@ -57,16 +57,18 @@ $readyForGaming = new Rule {
  */
 
 @cs = new Activity {
+	title: "Play CS",
 	rules: {
-		$readyForGaming: true,
+		$readyForGaming: true
 	},
 	desc: "Play Counter Strike NOW",
 	howToPlay: "With computer" // Keys must be one word
 };
 
 @sleep = new Activity {
+	title: "Sleep",
 	rules: { // If there are no rules then it is always in option
-		$readyForGaming: false,
+		$readyForGaming: false
 	},
 	desc: "Go to sleep please"
 };

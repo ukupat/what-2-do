@@ -103,13 +103,13 @@ public class OutputPanel extends JPanel {
 	}
 
 	private void renderActivityField(String key, String value) {
-		Text fieldName = new Text(key, 14, new Color(156, 226, 0));
+		Text fieldName = new Text(key, 14, new Color(156, 226, 0), 60);
 		add(fieldName, "gap 10 0 5, skip 1, aligny top");
 
 		Text semi = new Text(":", 14, new Color(238, 2, 97));
 		add(semi, "gap -10 0 5, aligny top");
 
-		Text field = new Text(value, 14, 130);
+		Text field = new Text(value, 14, 120);
 		add(field, "gap 10 0 5 5, wrap, aligny top");
 	}
 

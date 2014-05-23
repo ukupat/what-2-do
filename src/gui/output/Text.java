@@ -15,9 +15,15 @@ public class Text extends JLabel {
 		setForeground(fontColor);
 	}
 
+	public Text(String text, Integer fontSize, Color fontColor, Integer width) {
+		setSettings(fontSize);
+		setForeground(fontColor);
+		setText(String.format("<html><p style=\"width:%dpx;word-wrap:break-word;\">%s</p><html>", width, text));
+	}
+
 	public Text(String text, Integer fontSize, Integer width) {
 		setSettings(fontSize);
-		setText(String.format("<html><div style=\"width:%dpx;\">%s</div><html>", width, text));
+		setText(String.format("<html><p style=\"width:%dpx;word-wrap:break-word;\">%s</p><html>", width, text));
 	}
 
 	private void setSettings(Integer fontSize) {

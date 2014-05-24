@@ -21,7 +21,7 @@ public class QuestionParser {
 		if (question instanceof GrammarParser.CheckboxQuestionContext) {
 			new CheckboxParser().parse(question, variableName);
 		} else if (question instanceof GrammarParser.SelectQuestionContext) {
-			// TODO select question
+			new SelectParser().parse(question, variableName);
 		}
 	}
 

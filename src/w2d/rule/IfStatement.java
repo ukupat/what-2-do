@@ -15,7 +15,7 @@ public class IfStatement {
 
 	public IfStatement(Question leftSide, String rightSide, Boolean mustEqual) {
 		this.leftSide = leftSide;
-		this.rightSide = rightSide;
+		this.rightSide = rightSide.replace("\"", "");
 		this.mustEqual = mustEqual;
 	}
 

@@ -126,6 +126,10 @@ public class InputPanel extends JPanel {
 				el.getKey().answer = Boolean.toString(((JCheckBox) el.getValue()).isSelected());
 
 				log.info("Question '" + el.getKey().label + "' answer is '" + el.getKey().answer);
+			} else if (el.getValue() instanceof JComboBox) {
+				el.getKey().answer = ((JComboBox) el.getValue()).getSelectedItem().toString();
+
+				log.info("Question '" + el.getKey().label + "' answer is '" + el.getKey().answer + "'");
 			}
 		}
 	}

@@ -1,0 +1,34 @@
+
+/**
+ * Question which get answer via checkbox
+ */
+#happy = new Checkbox {
+	label: "Are you happy?" // Required
+};
+
+#howMuchTime = new Select {
+	label: "How much free time do you have?",
+	options: {
+		"30 minutes", "60 minutes", "2 hours", "Infinit"
+	}
+};
+
+/**
+ * Rule that can return null or true
+ */
+$mustBeHappy = new Rule { // Required is to have at least one return value
+	true: #happy is true and #howMuchTime is "2 hours"
+};
+
+/**
+ * Activity
+ */
+@playTennis = new Activity {
+	title: "Play tennis :)", // Required
+	rules: { // Don't need to be
+		$mustBeHappy: true
+	},
+	where: "Tennis court",
+	when: "NOW dumbass"
+};
+

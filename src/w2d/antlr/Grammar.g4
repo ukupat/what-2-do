@@ -27,19 +27,28 @@ questionVariable
   ;
 
 select
-  : 'new Select' ObjectStart fields ObjectEnd # SelectQuestion
+  : 'new Select' ObjectStart selectFields ObjectEnd # SelectQuestion
   ;
 
 checkbox
   : 'new Checkbox' ObjectStart label ObjectEnd  # CheckboxQuestion
   ;
 
-fields
-  : label
+selectFields
+  : label ',' selectOptions
+  | selectOptions ',' label
   ;
 
 label
   : 'label' KeyAndValueSeparator fieldValue  # LabelField
+  ;
+
+selectOptions
+  : 'options' KeyAndValueSeparator ObjectStart option (',' option)* ObjectEnd # OptionsField
+  ;
+
+option
+  : String # OptionField
   ;
 
 fieldValue

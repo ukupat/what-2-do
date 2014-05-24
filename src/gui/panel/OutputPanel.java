@@ -20,6 +20,7 @@ public class OutputPanel extends JPanel {
 		renderView();
 	}
 
+	// TODO use it for script reset
 	public void resetView() {
 		removeAll();
 		renderView();

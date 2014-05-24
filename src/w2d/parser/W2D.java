@@ -16,6 +16,7 @@ import w2d.question.Question;
 import w2d.rule.Rule;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -114,5 +115,12 @@ public class W2D {
 			}
 		}
 		return true;
+	}
+
+	// TODO use it to reset for new script
+	public void resetParsers() {
+		QuestionParser.questions = new HashMap<String, Question>();
+		RuleParser.rules = new HashMap<String, Rule>();
+		ActivityParser.activities = new HashMap<String, Activity>();
 	}
 }

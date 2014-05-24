@@ -30,6 +30,13 @@ public class InputPanel extends JPanel {
 		renderChooseFileView();
 	}
 
+	// TODO use it for script reset
+	public void resetView() {
+		removeAll();
+		renderChooseFileView();
+		refreshPanel();
+	}
+
 	private void setPanelSettings() {
 		setLayout(
 			new MigLayout(
@@ -75,8 +82,7 @@ public class InputPanel extends JPanel {
 
 		MainFrame.outputPanel.resetView();
 
-		repaint();
-		revalidate();
+		refreshPanel();
 	}
 
 	private void renderQuestionsTitle() {
@@ -122,5 +128,10 @@ public class InputPanel extends JPanel {
 				log.info("Question '" + el.getKey().label + "' answer is '" + el.getKey().answer);
 			}
 		}
+	}
+
+	private void refreshPanel() {
+		repaint();
+		revalidate();
 	}
 }

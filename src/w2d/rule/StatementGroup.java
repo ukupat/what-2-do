@@ -5,7 +5,7 @@ import java.util.List;
 
 public class StatementGroup {
 
-	private List<IfStatement> statements = new ArrayList<IfStatement>();
+	public List<IfStatement> statements = new ArrayList<IfStatement>();
 
 	public StatementGroup(List<IfStatement> statements) {
 		this.statements = statements;

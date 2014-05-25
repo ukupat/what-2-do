@@ -4,11 +4,11 @@ import w2d.question.Question;
 
 public class IfStatement {
 
-	private Question leftSide;
+	public Question leftSide;
 
-	private String rightSide;
+	public String rightSide;
 
-	private Boolean mustEqual;
+	public Boolean mustEqual;
 
 	public IfStatement() {
 	}

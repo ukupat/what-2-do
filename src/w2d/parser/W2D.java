@@ -32,7 +32,10 @@ public class W2D {
 
 	public void readTheScript() {
 		ParseTree tree = createParseTree();
-		parseTreeToObjects(tree);
+
+		if (ExceptionErrorStrategy.errors.isEmpty()) {
+			parseTreeToObjects(tree);
+		}
 	}
 
 	private ParseTree createParseTree() throws RecognitionException {
@@ -117,8 +120,7 @@ public class W2D {
 		return true;
 	}
 
-	// TODO use it to reset for new script
-	public void resetParsers() {
+	public static void resetParsers() {
 		QuestionParser.questions = new HashMap<String, Question>();
 		RuleParser.rules = new HashMap<String, Rule>();
 		ActivityParser.activities = new HashMap<String, Activity>();

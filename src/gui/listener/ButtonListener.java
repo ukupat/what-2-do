@@ -42,11 +42,10 @@ public class ButtonListener implements MouseListener {
 
 			Gui.showActivities(w2d.getActivitiesToShow());
 		} else if (button == InputPanel.backButton){
-            MainFrame.inputPanel.resetView();
-            MainFrame.outputPanel.resetView();
-            w2d.resetParsers();
-        }
-
+			MainFrame.inputPanel.resetView();
+			MainFrame.outputPanel.resetView();
+			W2D.resetParsers();
+		}
 	}
 
 	@Override

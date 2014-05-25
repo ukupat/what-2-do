@@ -6,6 +6,14 @@
 	label: "Are you happy?" // Required
 };
 
+#sleepy = new Checkbox {
+	label: "Are you sleepy?"
+};
+
+#hyper = new Checkbox {
+    label: "Are you hyper?"
+};
+
 #howMuchTime = new Select {
 	label: "How much free time do you have?",
 	options: {
@@ -20,6 +28,23 @@ $mustBeHappy = new Rule { // Required is to have at least one return value
 	true: #happy is true and #howMuchTime is "2 hours"
 };
 
+$mustBeSleepy = new Rule {
+	true: #sleepy is true
+};
+
+$infinitReading = new Rule {
+    true: #sleepy is true,
+    true: #howMuchTime is "Infinit"
+};
+
+$hyperAndNotSleepy = new Rule {
+    true: #hyper is true and #sleepy is false
+};
+
+$happyAndHyper = new Rule {
+    true: #hyper is true and #happy is true
+};
+
 /**
  * Activity
  */
@@ -32,3 +57,40 @@ $mustBeHappy = new Rule { // Required is to have at least one return value
 	when: "NOW dumbass"
 };
 
+@readABook = new Activity {
+	title: "Read something to fall asleep",
+	rules: {
+		$mustBeSleepy: true,
+		$infinitReading: true
+	},
+	where: "In bed",
+	when: "Maybe now"
+};
+
+@goRun = new Activity {
+    title: "Go have a nice run :)",
+    rules: {
+        $hyperAndNotSleepy: true
+    },
+    where: "Outside",
+    when: "How about now?"
+};
+
+@laughUncontrollably = new Activity {
+    title: "Go laugh uncontrollably",
+    rules: {
+        $happyAndHyper: true
+    },
+    where: "Anywhere you want, because you're happy",
+    when: "Dozen matter",
+    time: "As long as you want"
+};
+
+@goCode = new Activity {
+    title: "Do something useful and code ;)",
+    rules: {
+        $happyAndHyper: true
+    },
+    where: "On your computer",
+    why: "Because it's fun :)"
+};

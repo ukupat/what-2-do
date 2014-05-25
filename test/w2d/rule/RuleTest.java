@@ -21,7 +21,7 @@ public class RuleTest {
 
 	@Test
 	public void oneLineRuleWithOneTrueStatement() {
-		new W2D("#c = new Checkbox {label:\"You cool?\"};$cTrue = new Rule {true: #c is true};").readTheScript();
+		new W2D(getCheckboxString() + "$cTrue = new Rule {true: #c is true};").readTheScript();
 
 		assertEquals(1, RuleParser.rules.size());
 		assertNotNull(RuleParser.rules.get("$cTrue"));
@@ -35,7 +35,7 @@ public class RuleTest {
 
 	@Test
 	public void isNotSentence() {
-		new W2D("#c = new Checkbox {label:\"You cool?\"};$cTrue = new Rule {true: #c is not true};").readTheScript();
+		new W2D(getCheckboxString() + "$cTrue = new Rule {true: #c is not true};").readTheScript();
 
 		for (Map.Entry<StatementGroup, Boolean> group : RuleParser.rules.get("$cTrue").statementGroups.entrySet()) {
 			assertFalse(group.getKey().statements.get(0).mustEqual);
@@ -44,7 +44,7 @@ public class RuleTest {
 
 	@Test
 	public void andSentence() {
-		new W2D("#c = new Checkbox {label:\"You cool?\"};$cTrue = new Rule {true: #c is true and #c is false};").readTheScript();
+		new W2D(getCheckboxString() + "$cTrue = new Rule {true: #c is true and #c is false};").readTheScript();
 
 		for (Map.Entry<StatementGroup, Boolean> group : RuleParser.rules.get("$cTrue").statementGroups.entrySet()) {
 			assertEquals(2, group.getKey().statements.size());
@@ -53,7 +53,7 @@ public class RuleTest {
 
 	@Test
 	public void multipleStatements() {
-		new W2D("#c = new Checkbox {label:\"You cool?\"};$cTrue = new Rule {true: #c is true, false: #c is false};").readTheScript();
+		new W2D(getCheckboxString() + "$cTrue = new Rule {true: #c is true, false: #c is false};").readTheScript();
 
 		assertEquals(2, RuleParser.rules.get("$cTrue").statementGroups.size());
 	}
@@ -67,21 +67,21 @@ public class RuleTest {
 
 	@Test
 	public void ruleWithoutContent() {
-		new W2D("#c = new Checkbox {label:\"You cool?\"};$cTrue = new Rule {};").readTheScript();
+		new W2D(getCheckboxString() + "$cTrue = new Rule {};").readTheScript();
 
 		assertFalse(ExceptionErrorStrategy.errors.isEmpty());
 	}
 
 	@Test
 	public void ruleSatisfiedValueWithoutAnswer() {
-		new W2D("#c = new Checkbox {label:\"You cool?\"};$cTrue = new Rule {true: #c is true};").readTheScript();
+		new W2D(getCheckboxString() + "$cTrue = new Rule {true: #c is true};").readTheScript();
 
 		assertNull(RuleParser.rules.get("$cTrue").satisfied);
 	}
 
 	@Test
 	public void ruleSatisfiedValueWithAnswer() {
-		new W2D("#c = new Checkbox {label:\"You cool?\"};$cTrue = new Rule {true: #c is true};").readTheScript();
+		new W2D(getCheckboxString() + "$cTrue = new Rule {true: #c is true};").readTheScript();
 
 		Question question = getQuestionFromRule();
 
@@ -98,9 +98,7 @@ public class RuleTest {
 
 	@Test
 	public void multiLineRuleSatisfiedValueWithAnswer() {
-		new W2D(
-			"#c = new Checkbox {label:\"You cool?\"};$cTrue = new Rule {true: #c is true, false: #c is not true};"
-		).readTheScript();
+		new W2D(getCheckboxString() + "$cTrue = new Rule {true: #c is true, false: #c is not true};").readTheScript();
 
 		Question question = getQuestionFromRule();
 
@@ -113,6 +111,10 @@ public class RuleTest {
 		RuleParser.rules.get("$cTrue").setSatisfied();
 
 		assertFalse(RuleParser.rules.get("$cTrue").satisfied);
+	}
+
+	private String getCheckboxString() {
+		return "#c = new Checkbox {label:\"You cool?\"};";
 	}
 
 	private Question getQuestionFromRule() {

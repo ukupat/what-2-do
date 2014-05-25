@@ -104,20 +104,15 @@ public class W2D {
 		List<Activity> activities = new ArrayList<Activity>();
 
 		for (Map.Entry<String, Activity> el : ActivityParser.activities.entrySet()) {
-			if (activityRulesAreSatisfied(el.getValue())) {
+			Activity activity = el.getValue();
+
+			activity.setShowStatus();
+
+			if (activity.show) {
 				activities.add(el.getValue());
 			}
 		}
 		return activities;
-	}
-
-	private Boolean activityRulesAreSatisfied(Activity activity) {
-		for (Map.Entry<Rule, Boolean> el : activity.rules.entrySet()) {
-			if (el.getKey().satisfied != el.getValue()) {
-				return false;
-			}
-		}
-		return true;
 	}
 
 	public static void resetParsers() {

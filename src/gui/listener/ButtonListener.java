@@ -44,6 +44,7 @@ public class ButtonListener implements MouseListener {
 		} else if (button == InputPanel.backButton){
             MainFrame.inputPanel.resetView();
             MainFrame.outputPanel.resetView();
+            w2d.resetParsers();
         }
 
 	}

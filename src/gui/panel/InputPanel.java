@@ -22,6 +22,7 @@ public class InputPanel extends JPanel {
 
 	public static Button chooseFileButton;
 	public static Button submitButton;
+    public static Button backButton;
 
 	public static Map<Question, JComponent> questions = new HashMap<Question, JComponent>();
 
@@ -30,7 +31,6 @@ public class InputPanel extends JPanel {
 		renderChooseFileView();
 	}
 
-	// TODO use it for script reset
 	public void resetView() {
 		removeAll();
 		renderChooseFileView();
@@ -79,6 +79,7 @@ public class InputPanel extends JPanel {
 			}
 		}
 		renderSubmitButton();
+        renderBackButton();
 
 		MainFrame.outputPanel.resetView();
 
@@ -117,6 +118,11 @@ public class InputPanel extends JPanel {
 		submitButton = new Button("Submit");
 		add(submitButton, "gap 13 15 15 15");
 	}
+
+    private void renderBackButton(){
+        backButton = new Button("Back");
+        add(backButton, "newline, gap 13 15 0 15");
+    }
 
 	public void collectAnswers() {
 		log.info("Collecting answers");

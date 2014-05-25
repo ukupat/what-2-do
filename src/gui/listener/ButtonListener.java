@@ -41,8 +41,11 @@ public class ButtonListener implements MouseListener {
 			MainFrame.inputPanel.collectAnswers();
 
 			Gui.showActivities(w2d.getActivitiesToShow());
-		}
-		// TODO new button if sentence
+		} else if (button == InputPanel.backButton){
+            MainFrame.inputPanel.resetView();
+            MainFrame.outputPanel.resetView();
+        }
+
 	}
 
 	@Override

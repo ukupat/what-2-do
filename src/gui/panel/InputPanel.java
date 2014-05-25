@@ -116,12 +116,12 @@ public class InputPanel extends JPanel {
 
 	private void renderSubmitButton() {
 		submitButton = new Button("Submit");
-		add(submitButton, "gap 13 15 15 15");
+		add(submitButton, "gap 15 100 15 15,split");
 	}
 
     private void renderBackButton(){
         backButton = new Button("Back");
-        add(backButton, "newline, gap 13 15 0 15");
+        add(backButton, "gap 15 15 15 15");
     }
 
 	public void collectAnswers() {
